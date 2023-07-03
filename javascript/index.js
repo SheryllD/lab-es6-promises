@@ -182,4 +182,36 @@ makeBroccoli();
 */ 
 
 // Bonus 2 - Promise all
-// ...
+/*let allPromises = []; 
+for (let i = 0; i < brusselsSprouts.length; i++) {
+  allPromises.push(brusselsSprouts[i]); 
+}
+Promise.all(allPromises).then((promisesfulfilled) => {
+  for (let i = 0; i < promisesfulfilled.length; i++) {
+    document.querySelector("#brusselSprouts").innerHTML += `<li>${promisesfulfilled[i]}</li>`; 
+  } 
+  document.querySelector("#brusselSprouts").innerHTML += `<li> Brussels sprouts are ready! </li>`; 
+}); 
+
+let sprout = document.querySelector("#brusselsSproutsImg");
+sprout.removeAttribute("hidden");
+*/
+
+let allPromises = [];
+
+for (let i = 0; i < brusselsSprouts.length; i++) {
+  allPromises.push(obtainInstruction(brusselsSprouts[i]));
+}
+Promise.all(allPromises).then((promisesfulfilled) => {
+  for (let i = 0; i < promisesfulfilled.length; i++) {
+    document.querySelector(
+      "#brusselsSprouts"
+    ).innerHTML += `<li>${promisesfulfilled[i]}</li>`;
+  }
+  document.querySelector(
+    "#brusselsSprouts"
+  ).innerHTML += `<li> Brussels sprouts are ready!</li>`;
+});
+
+let sprout = document.querySelector("#brusselsSproutsImg");
+sprout.removeAttribute("hidden");
